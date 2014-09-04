@@ -1,4 +1,4 @@
 module.exports = [
-"{0}の{1}",
-"{0}の{1}"
+"{adj}の{sub}",
+"{sub} Ｘ {sub}"
 ]
