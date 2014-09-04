@@ -1,0 +1,28 @@
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+
+var stringformat = require("./stringformat.js");
+var formats = require("./formats.js");
+var adjectives = require("./adjectives.js");
+var subjects = require("./subjects.js");
+var utils = require("./utils.js");
+
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+
+console.log(
+	utils.randomchoose(formats).format(
+		utils.randomchoose(adjectives), 
+		utils.randomchoose(subjects)
+	)
+);
